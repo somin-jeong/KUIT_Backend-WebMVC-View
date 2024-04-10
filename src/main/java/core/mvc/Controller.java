@@ -8,5 +8,5 @@ import java.io.IOException;
 
 public interface Controller {
     static final String REDIRECT = "redirect:";
-    View execute(HttpServletRequest req, HttpServletResponse resp) throws IOException;
+    ModelAndView execute(HttpServletRequest req, HttpServletResponse resp) throws IOException;
 }

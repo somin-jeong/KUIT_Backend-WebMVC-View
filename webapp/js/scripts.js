@@ -16,6 +16,7 @@ function addAnswer(e) {
 }
 
 function onSuccess(json, status){
+    console.log(json);
     var answerTemplate = $("#answerTemplate").html();
     console.log(json);
     var template = answerTemplate.format(json.answer.author, new Date(json.answer.createdDate), json.answer.contents, json.answer.answerId, json.answer.answerId);
