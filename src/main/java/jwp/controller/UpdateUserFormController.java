@@ -17,7 +17,7 @@ import java.io.IOException;
 
 public class UpdateUserFormController implements Controller {
     @Override
-    public ModelAndView execute(HttpServletRequest req, HttpServletResponse resp) {
+    public ModelAndView execute(HttpServletRequest req) {
         String userId = req.getParameter("userId");
         User user = MemoryUserRepository.getInstance().findUserById(userId);
         if (user != null) {

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ListUserController implements Controller {
     @Override
-    public ModelAndView execute(HttpServletRequest req, HttpServletResponse resp) {
+    public ModelAndView execute(HttpServletRequest req) {
         if(UserSessionUtils.isLogined(req.getSession())){
             req.setAttribute("users", MemoryUserRepository.getInstance().findAll());
             return new ModelAndView(new JspView("/user/list.jsp"));

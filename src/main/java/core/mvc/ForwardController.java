@@ -16,7 +16,7 @@ public class ForwardController implements Controller {
         }
     }
     @Override
-    public View execute(HttpServletRequest req, HttpServletResponse resp){
-        return new JspView(forwardUrl);
+    public ModelAndView execute(HttpServletRequest req){
+        return new ModelAndView(new JspView(forwardUrl));
     }
 }

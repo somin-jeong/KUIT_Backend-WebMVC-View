@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CreateUserController implements Controller {
     @Override
-    public ModelAndView execute(HttpServletRequest req, HttpServletResponse resp) {
+    public ModelAndView execute(HttpServletRequest req) {
         User user = new User(req.getParameter("userId"),
                 req.getParameter("password"),
                 req.getParameter("name"),

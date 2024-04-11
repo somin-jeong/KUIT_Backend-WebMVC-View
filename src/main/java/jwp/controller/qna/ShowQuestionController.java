@@ -20,7 +20,7 @@ public class ShowQuestionController extends AbstractController {
     private static final MemoryAnswerRepository memoryAnswerRepository = MemoryAnswerRepository.getInstance();
 
     @Override
-    public ModelAndView execute(HttpServletRequest req, HttpServletResponse resp) {
+    public ModelAndView execute(HttpServletRequest req) {
 
         Long questionId = Long.parseLong(req.getParameter("questionId"));
         Question question = questionRepository.findQuestionById(questionId);
