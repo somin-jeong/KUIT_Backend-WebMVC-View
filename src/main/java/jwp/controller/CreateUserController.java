@@ -2,6 +2,7 @@ package jwp.controller;
 
 import core.db.MemoryUserRepository;
 import core.mvc.Controller;
+import core.mvc.ModelAndView;
 import core.mvc.view.JspView;
 import core.mvc.view.View;
 import jwp.model.User;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CreateUserController implements Controller {
     @Override
-    public View execute(HttpServletRequest req, HttpServletResponse resp) {
+    public ModelAndView execute(HttpServletRequest req, HttpServletResponse resp) {
         User user = new User(req.getParameter("userId"),
                 req.getParameter("password"),
                 req.getParameter("name"),
@@ -19,6 +20,6 @@ public class CreateUserController implements Controller {
 
         MemoryUserRepository.getInstance().addUser(user);
 
-        return new JspView(REDIRECT + "/user/userList");
+        return new ModelAndView(new JspView(REDIRECT + "/user/userList"));
     }
 }
