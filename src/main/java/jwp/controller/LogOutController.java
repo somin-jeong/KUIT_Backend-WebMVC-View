@@ -12,12 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
 
-public class LogOutController implements Controller {
+public class LogOutController extends AbstractController {
+    HttpSession session;
     @Override
-    public ModelAndView execute(HttpServletRequest req) {
-        HttpSession session = req.getSession();
+    public void setSession(HttpSession httpSession) {
+        this.session = httpSession;
+    }
+    @Override
+    public ModelAndView execute(Map<String, String> params) {
         session.removeAttribute("user");
-        return new ModelAndView(new JspView(REDIRECT + "/"));
+        return jspView(REDIRECT + "/");
     }
 }

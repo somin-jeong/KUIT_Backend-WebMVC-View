@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "dispatcher", urlPatterns = "/", loadOnStartup = 1)
 public class DispatcherServlet extends HttpServlet {
@@ -24,8 +26,11 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Controller controller = requestMapping.getController(req);
+        if (controller == null) return;
+        controller.setSession(req.getSession());
+
         try {
-            ModelAndView modelAndView = controller.execute(req);
+            ModelAndView modelAndView = controller.execute(createParams(req));
             if(modelAndView == null) return;
             modelAndView.getView().render(modelAndView.getModel(), req, resp);
         } catch (Throwable e) {
@@ -41,5 +46,11 @@ public class DispatcherServlet extends HttpServlet {
 
         RequestDispatcher rd = req.getRequestDispatcher(viewName);
         rd.forward(req, resp);
+    }
+
+    private Map<String, String> createParams(HttpServletRequest request) {
+        Map<String, String> params = new HashMap<>();
+        request.getParameterNames().asIterator().forEachRemaining(paramName -> params.put(paramName, request.getParameter(paramName)));
+        return params;
     }
 }

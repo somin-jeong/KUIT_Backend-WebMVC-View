@@ -8,12 +8,14 @@ import core.mvc.view.View;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
-public class HomeController implements Controller {
+public class HomeController extends AbstractController {
     private final MemoryQuestionRepository questionRepository = MemoryQuestionRepository.getInstance();
     @Override
-    public ModelAndView execute(HttpServletRequest req) {
-        req.setAttribute("questions", questionRepository.findAll());
-        return new ModelAndView(new JspView("/home.jsp"));
+    public ModelAndView execute(Map<String, String> params) {
+        ModelAndView modelAndView = jspView("/home.jsp");
+        modelAndView.addObject("questions", questionRepository.findAll());
+        return modelAndView;
     }
 }
