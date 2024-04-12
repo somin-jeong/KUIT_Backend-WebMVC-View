@@ -14,8 +14,6 @@ public class HomeController extends AbstractController {
     private final MemoryQuestionRepository questionRepository = MemoryQuestionRepository.getInstance();
     @Override
     public ModelAndView execute(Map<String, String> params) {
-        ModelAndView modelAndView = jspView("/home.jsp");
-        modelAndView.addObject("questions", questionRepository.findAll());
-        return modelAndView;
+        return jspView("/home.jsp").addObject("questions", questionRepository.findAll());
     }
 }

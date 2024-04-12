@@ -22,16 +22,10 @@ public class ShowQuestionController extends AbstractController {
 
     @Override
     public ModelAndView execute(Map<String, String> params) {
-
         Long questionId = Long.parseLong(params.get("questionId"));
         Question question = questionRepository.findQuestionById(questionId);
         List<Answer> answers = memoryAnswerRepository.findAnswersByQuestionId(questionId);
 
-        ModelAndView modelAndView = jspView("/qna/show.jsp");
-
-        modelAndView.addObject("question", question);
-        modelAndView.addObject("answers", answers);
-
-        return modelAndView;
+        return jspView("/qna/show.jsp").addObject("question", question).addObject("answers", answers);
     }
 }
