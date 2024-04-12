@@ -44,11 +44,11 @@ public class User {
     }
 
     public boolean isSameUser(User user) {
-        return isSameUser(user.getUserId());
+        return isSameUser(user.getUserId(), user.getPassword());
     }
 
-    public boolean isSameUser(String userId) {
-        return userId.equals(this.userId);
+    public boolean isSameUser(String userId, String password) {
+        return userId.equals(this.userId) && matchPassword(password);
     }
 
     @Override

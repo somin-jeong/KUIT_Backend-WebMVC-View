@@ -11,6 +11,9 @@ public class MemoryUserRepository {
     private static MemoryUserRepository memoryUserRepository;
 
     private MemoryUserRepository() {
+        addUser(new User("jiyoon","jiyoon","지윤","jiyoon@kuit.com"));
+        addUser(new User("jiyoon2","jiyoon2","지윤이","jiyoon2@kuit.com"));
+        addUser(new User("admin","admin","어드민","admin@kuit.com"));
     }
 
     public static MemoryUserRepository getInstance() {
